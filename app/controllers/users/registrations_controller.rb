@@ -2,26 +2,41 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_account_update_params, only: [:update]
 
-
-  
 
   # GET /resource/sign_up
-   def new
-    #   super
-    # Override Devise default behaviour and create a profile as well
-    #build_resource({})
-    #resource.build_profile
-    #ressource.build_identity_document
-    #respond_with self.resource
-    #@customer.build_identity_document
-   end
-
-  # POST /resource
-  # def create
+  # def new
   #   super
   # end
+
+
+  def new
+    # Override Devise default behaviour and create a profile as well
+    build_resource({})
+    resource.build_profile
+    respond_with self.resource
+  end
+
+
+ 
+  # POST /resource
+  #def create
+    
+    
+    #profile_attributes = sign_up_params["profile_attributes"]
+    #full_address = profile_attributes["full_address"]
+    #puts "Full address: #{full_address}"
+
+    
+      #set_login
+      #sign_up_params.merge!(login: "amos")
+      #login = sign_up_params[:login]
+     
+     
+      
+   
+   #end
 
   # GET /resource/edit
   # def edit
@@ -49,20 +64,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
-
-  
-  
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:login])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:login])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:login, profile_attributes: [ :sex, :country, :city ]])
+
    end
 
   # If you have extra params to permit, append them to the sanitizer.
-   def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-   end
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -74,14 +85,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-
   def after_update_path_for(resource)
     profile_path
   end
 
   def after_sign_in_path_for(resource)
    
-        dashboard_path
+        profile_path
  
 
   end
@@ -90,4 +100,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
 
+  
+
+  
 end

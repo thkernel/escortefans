@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :uid
       t.string :first_name 
       t.string :last_name 
-      t.string :gender
+      t.string :sex
       t.date :birth_date 
       t.string :full_address
       t.string :street

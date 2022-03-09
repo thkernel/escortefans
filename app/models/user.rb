@@ -3,10 +3,11 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  uid                    :string
 #  login                  :string
-#  role_id                :bigint           not null
-#  status                 :string
+#  slug                   :string
+#  role_id                :bigint
+#  identifier             :string
+#  status                 :string           default("Enabled"), not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -29,66 +30,82 @@
 #
 
 class User < ApplicationRecord
-
-	include SharedUtils::Generate
-	
-  	before_save :generate_random_number_uid
+   # Include shared utils.
+   include SharedUtils::Generate
+   
+   before_save :generate_random_number_uid
+   
+   before_save :set_default_role
+ 
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable#,:confirmable, :lockable, :timeoutable, :trackable
+         #,:omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
 
+  has_one :profile, dependent: :destroy
+
+  # For FriendlyID
+  #extend FriendlyId
+  #friendly_id :login, use: :slugged
+  
+  # Add nested attributes for profile.
+  accepts_nested_attributes_for :profile
+
+ 
+  has_many :messages, :dependent => :destroy
+  #has_many :notifications, :dependent => :destroy
+
+  
+  has_many :own_conversations, :class_name => "Conversation", :foreign_key => :sender_id
+  has_many :foreign_conversations, :class_name => "Conversation", :foreign_key => :recipient_id
+
+  has_many :own_flirts, :class_name => "Flirt", :foreign_key => :sender_id
+  has_many :foreign_flirts, :class_name => "Flirt", :foreign_key => :recipient_id
+
+  has_many :own_favoris, :class_name => "Favori", :foreign_key => :sender_id
+  has_many :foreign_favoris, :class_name => "Favori", :foreign_key => :recipient_id
+
+  
+  # Validations
+  validates :login, presence: true, uniqueness: true
+  #validates :identifier, presence: true, uniqueness: true
 
 
- belongs_to :role
- has_one :profile, dependent: :destroy
- accepts_nested_attributes_for :profile #,  allow_destroy: true
-
-  has_many :engine_categories, dependent: :destroy
-  has_many :engines, dependent: :destroy
-  has_many :parks, dependent: :destroy
-  has_many :maintenance_types, dependent: :destroy
-  has_many :maintenances, dependent: :destroy
-
-  # Change default params ID to uid
+   # Change default params ID to uid
   def to_param
     uid
   end
+  
+  def self.find_user_by_slug(slug)
+    where("slug = ? ", "#{slug}")
+  end
 
 
-  def superuser?
-    if self.role.name == "Superuser"
-      true 
-    else
-      false
+  private 
+  
+  def random_user_id 
+    begin
+      self.slug = "u#{SecureRandom.random_number(1_000_000_000)}"
+    end while User.where(slug: self.slug).exists?
+  end 
+
+  def set_default_role
+    unless self.role_id.present?
+      role = Role.find_by(name: "User")
+      self.role_id = role.id
     end
   end
   
-    def admin?
-      if self.role.name == "Administrateur"
-        true 
-      else
-        false
-      end
-    end
-  
-    def user?
-    if self.role.name == "user"
-      true 
-    else
-      false
-    end
-    end
-  
-    def guest?
-    if self.role.name == "guest"
-      true 
-    else
-      false
-    end
-    end
 
+  def self.create_from_provider_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.email = provider_data.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
 
 end

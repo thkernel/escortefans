@@ -18,10 +18,10 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap
-//= require toastr
+// require toastr
 //= require rails.validations
-//= require cookies_eu
-//= require google_analytics
+// require cookies_eu
+// require google_analytics
 
 
 // require_tree .

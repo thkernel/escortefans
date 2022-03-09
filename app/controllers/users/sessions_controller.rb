@@ -26,12 +26,12 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_update_path_for(resource)
-    dashboard_path
+    profile_path
   end
 
   def after_sign_in_path_for(resource)
    
-    stored_location_for(resource) || dashboard_path
+        profile_path
  
 
   end

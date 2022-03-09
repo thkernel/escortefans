@@ -1,16 +1,79 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  layout "dashboard"
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :profile_thumbnail,:update_profile_thumbnail, :profile_presentation, :update_profile_presentation,:profile_informations, :update_profile_informations]
+ # This controller is reserved for all user authenticate users
+ before_action :authenticate_user!
+    
+ layout "profile"
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    #@profiles = Profile.all
+    @users = User.where.not(id: current_user.id).order(created_at: 'DESC').paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+  end
+
+  def show_my_profile
+    @user = current_user
+  end
+
+  def show_his_profile
+    @user = User.find_by(uid: params[:uid])
+  end
+
+  def profile_presentation
+  end
+  def update_profile_presentation
+    respond_to do |format|
+      if @profile.update(profile_params)
+        format.html { redirect_to show_my_profile_path(current_user), notice: 'Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @profile }
+        format.js
+      else
+        format.html { render :edit }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
+  def profile_informations
+    #@user = User.find_by(slug: params[:slug])
+  end
+
+  def profile_thumbnail
+    #@user = User.find_by(slug: params[:slug])
+  end
+
+  def update_profile_thumbnail
+    respond_to do |format|
+      if @profile.update(profile_params)
+        format.html { redirect_to show_my_profile_path(current_user.slug), notice: 'Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @profile }
+        format.js
+      else
+        format.html { render :edit }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
+  def update_profile_informations
+    respond_to do |format|
+      if @profile.update(profile_params)
+        format.html { redirect_to show_my_profile_path(current_user.slug), notice: 'Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @profile }
+        format.js
+      else
+        format.html { render :edit }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
   end
 
   # GET /profiles/new
@@ -20,11 +83,6 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-  
-      @profile = current_user.profile || current_user.build_profile 
-    
-
-    puts "PROFILE: #{@profile.inspect}"
   end
 
   # POST /profiles
@@ -46,14 +104,15 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
-    puts "MY PROFILE: #{@profile}"
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to edit_account_path(current_user.profile.uid), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -70,16 +129,14 @@ class ProfilesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
     def set_profile
-      if params[:uid].present?
-        @profile = Profile.find(uid: params[:uid])
-      else  
-        @profile = Profile.find_by(params[:id])
-      end
+      user = User.find_by(uid: params[:uid])
+      @profile = user.profile
     end
 
-    # Only allow a list of trusted parameters through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :civility,  :profile, :phone, :address,  :user_id)
+      params.require(:profile).permit(:first_name, :last_name, :sex, :birth_date, :full_address, :about, :marital_status, :cut, :weight, :eyes, :hair, :sexual_orientation, :occupation, :astrology, :region, :nationality, :purpose, :presentation, :avatar)
     end
 end

@@ -84,23 +84,36 @@ gem 'remotipart', '~> 1.4', '>= 1.4.2'
 gem 'client_side_validations', '~> 14.1'
 gem 'action_mailer_auto_url_options', '~> 1.0', '>= 1.0.2'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
-#gem 'kaminari', '~> 1.1', '>= 1.1.1'
-#gem 'chosen-rails', '~> 1.8', '>= 1.8.7'
-gem 'apartment', '~> 2.2'
+
 gem 'chartkick', '~> 3.0', '>= 3.0.2'
 gem 'cocoon', '~> 1.2', '>= 1.2.12'
 #gem 'ckeditor', '~> 5.0'
-#gem 'ckeditor', github: 'galetahub/ckeditor'
-#gem 'social-share-button', '~> 1.2', '>= 1.2.1'
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'social-share-button', '~> 1.2', '>= 1.2.1'
 gem 'sanitize', '~> 5.1'
-gem 'creek', '~> 2.2'
+
 gem 'pg_search', '~> 2.3'
-#gem 'cookies_eu', '~> 1.7', '>= 1.7.5'
-gem 'countries', require: 'countries/global'
+
 gem 'recaptcha', '~> 5.5'
 gem 'autoprefixer-rails', '~> 9.8', '>= 9.8.6.5'
-#gem 'meta-tags', '~> 2.13' # For SEO
+gem 'meta-tags', '~> 2.16' # For SEO
+
 gem 'breadcrumbs_on_rails', '~> 4.0' # For SEO
+# Gem allows to use `flag-icon-css` - a collection of all country flags in SVG - in your Rails projects
+gem 'flag-icons-rails', '~> 3.1'
+
+# Provides object geocoding (by street or IP address)
+gem 'geocoder', '~> 1.5'
+#gem 'countries', '~> 1.2', '>= 1.2.5'
+gem 'countries', require: 'countries/global'
+
+# Geocoding and Places Autocomplete Plugin
+gem 'geocomplete_rails', '~> 1.7'
+# A jQuery plugin for entering and validating international telephone numbers
+gem 'intl-tel-input-rails', '~> 12.3'
+
+# Bootstrap Filestyle (gem version reflects assets version) packaged for rails
+gem 'bootstrap-filestyle-rails', '~> 1.2', '>= 1.2.1'
 
 gem 'execjs', '~> 2.7.0' #To fix ExecJS::ProgramError on a new Rails 5.2
 
@@ -112,11 +125,6 @@ gem 'grape-active_model_serializers', '~> 1.5', '>= 1.5.2'
 gem 'devise_token_auth'
 gem 'select2-rails', '~> 4.0', '>= 4.0.13'
 gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
-
-gem 'wkhtmltopdf-binary', '~> 0.12.6.5' # Wecked PDF requirement.
-#gem 'wicked_pdf', '~> 2.1' # For generate PDF.
-gem 'wicked_pdf', git: 'https://github.com/mileszs/wicked_pdf', branch: 'master'
-
 
 # This gem causes db:create to fail
 # You can enable it for tests as long as the db has been created

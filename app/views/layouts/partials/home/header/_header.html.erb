@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-md navbar-dark  bg-dark"> <!-- fixed-top -->
+<nav class="navbar navbar-expand-md navbar-blue  bg-blue"> <!-- fixed-top -->
 	<div class="container">
   
 	<div class= "navbar-brand">
@@ -61,7 +61,7 @@
      <%= user_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to "Mon compte" , show_my_profile_path(slug: current_user.slug), class: "dropdown-item" %>
+      <%= link_to "Mon compte" , show_my_profile_path( current_user), class: "dropdown-item" %>
       <div class="dropdown-divider"></div>
       <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete,  class: "dropdown-item"  %>
 

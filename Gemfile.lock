@@ -1,10 +1,9 @@
 GIT
-  remote: https://github.com/mileszs/wicked_pdf
-  revision: 769f9df487f3c1e31dc91431666baa78d2aa24fb
-  branch: master
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 8200ccdbf789669d154b800aab329db8f46aabdc
   specs:
-    wicked_pdf (2.1.0)
-      activesupport
+    ckeditor (5.1.1)
+      orm_adapter (~> 0.5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -72,11 +71,6 @@ GEM
     annotate (2.7.5)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
-    apartment (2.2.1)
-      activerecord (>= 3.1.2, < 6.0)
-      parallel (>= 0.7.1)
-      public_suffix (>= 2)
-      rack (>= 1.3.6)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -96,6 +90,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-filestyle-rails (1.2.1)
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
     builder (3.2.4)
@@ -155,9 +150,6 @@ GEM
       i18n_data (~> 0.15.0)
       sixarm_ruby_unaccent (~> 1.1)
     crass (1.0.6)
-    creek (2.5.3)
-      nokogiri (>= 1.10.0)
-      rubyzip (>= 1.0.0)
     css_parser (1.11.0)
       addressable
     debug_inspector (1.1.0)
@@ -200,10 +192,15 @@ GEM
     faker (1.9.6)
       i18n (>= 0.7)
     ffi (1.15.5)
+    flag-icons-rails (3.4.6.1)
+      sass-rails
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
+    geocoder (1.7.3)
+    geocomplete_rails (1.7.0)
+      railties (>= 3.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     grape (1.6.2)
@@ -221,6 +218,9 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n_data (0.15.0)
       simple_po_parser (~> 1.1)
+    intl-tel-input-rails (12.3.0)
+      railties (>= 3.1)
+      sass-rails
     io-like (0.3.1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -245,6 +245,8 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    meta-tags (2.16.0)
+      actionpack (>= 3.2.0, < 7.1)
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
@@ -264,7 +266,6 @@ GEM
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     orm_adapter (0.5.0)
-    parallel (1.21.0)
     pg (1.3.3)
     pg_search (2.3.5)
       activerecord (>= 5.2)
@@ -360,6 +361,8 @@ GEM
     set (1.0.2)
     simple_po_parser (1.1.5)
     sixarm_ruby_unaccent (1.2.0)
+    social-share-button (1.2.4)
+      coffee-rails
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
@@ -400,7 +403,6 @@ GEM
     will_paginate (3.3.1)
     will_paginate-bootstrap (1.0.2)
       will_paginate (>= 3.0.3)
-    wkhtmltopdf-binary (0.12.6.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -412,12 +414,12 @@ DEPENDENCIES
   active_record_slave
   activerecord-session_store (~> 1.1, >= 1.1.3)
   annotate (~> 2.7, >= 2.7.5)
-  apartment (~> 2.2)
   autoprefixer-rails (~> 9.8, >= 9.8.6.5)
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3, >= 4.3.1)
+  bootstrap-filestyle-rails (~> 1.2, >= 1.2.1)
   breadcrumbs_on_rails (~> 4.0)
   byebug
   cancancan (~> 3.0, >= 3.0.1)
@@ -429,24 +431,29 @@ DEPENDENCIES
   capybara (>= 2.15)
   chartkick (~> 3.0, >= 3.0.2)
   chromedriver-helper
+  ckeditor!
   client_side_validations (~> 14.1)
   cocoon (~> 1.2, >= 1.2.12)
   coffee-rails (~> 4.2)
   countries
-  creek (~> 2.2)
   devise (~> 4.6, >= 4.6.2)
   devise-i18n (~> 1.8)
   devise_token_auth
   dotenv-rails (~> 2.7, >= 2.7.2)
   execjs (~> 2.7.0)
   faker (~> 1.9, >= 1.9.3)
+  flag-icons-rails (~> 3.1)
   font-awesome-rails (~> 4.7, >= 4.7.0.5)
   friendly_id (~> 5.2, >= 5.2.5)
+  geocoder (~> 1.5)
+  geocomplete_rails (~> 1.7)
   grape (~> 1.2, >= 1.2.5)
   grape-active_model_serializers (~> 1.5, >= 1.5.2)
+  intl-tel-input-rails (~> 12.3)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.3)
   listen (>= 3.0.5, < 3.2)
+  meta-tags (~> 2.16)
   mini_magick (~> 4.8)
   pg (~> 1.1, >= 1.1.4)
   pg_search (~> 2.3)
@@ -462,15 +469,14 @@ DEPENDENCIES
   sassc (~> 2.4)
   select2-rails (~> 4.0, >= 4.0.13)
   selenium-webdriver
+  social-share-button (~> 1.2, >= 1.2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5.2)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  wicked_pdf!
   will_paginate-bootstrap (~> 1.0, >= 1.0.2)
-  wkhtmltopdf-binary (~> 0.12.6.5)
 
 BUNDLED WITH
    2.2.17
