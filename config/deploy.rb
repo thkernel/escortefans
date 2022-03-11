@@ -1,18 +1,15 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock "~> 3.11.0"
 
-set :stages, %w(production staging)
-set :default_stage, "production"
-
-set :application, "EngineYard"
-set :repo_url, "https://github.com/thkernel/EngineYard.git"
+set :application, "escortefans.net"
+set :repo_url, "https://github.com/thkernel/escortefans.git"
 #set :ssh_options, { auth_methods: %w(password), password: "AMOSXZIBITDE88" }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
- #set :deploy_to, "/home/ubuntu/acres-app"
+ #set :deploy_to, "/home/ubuntu/app/escortefans.net"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -25,13 +22,15 @@ set :repo_url, "https://github.com/thkernel/EngineYard.git"
 # set :pty, true
 
 # Default value for :linked_files is []
- append :linked_files, "config/database.yml", "config/master.key", "config/storage.yml"
+ #append :linked_files, "config/database.yml", "config/master.key"
+ append :linked_files, "config/database.yml", "config/master.key", "config/storage.yml", "config/meta.yml", ".env"
+
 
 # Default value for linked_dirs is []
- append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/storage", "storage"
+ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
- #set :nginx_config_name, "acres"
- #set :nginx_server_name, "acres"
+ #set :nginx_config_name, "escortefans.net"
+ #set :nginx_server_name, "escortefans.net"
  #set :puma_workers, 1
 
 # Default value for default_env is {}
@@ -48,4 +47,13 @@ set :repo_url, "https://github.com/thkernel/EngineYard.git"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-#set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
+=begin
+set :pty, true
+set :ssh_options, {
+  forward_agent: true,
+  auth_methods: ["publickey"],
+  keys: ["~/projects/rails/escortefans/escortefans-ec2.pem"]
+}
+#~/projects/rails/oisepro
+=end
