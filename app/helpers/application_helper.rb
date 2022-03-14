@@ -14,7 +14,7 @@ module ApplicationHelper
 		@devise_mapping ||= Devise.mappings[:user]
 	end
 
-	def user_avatar(user, alt_tag, class_name)
+	def profile_avatar(user, alt_tag, class_name)
 		profile = user.profile
 
 			 

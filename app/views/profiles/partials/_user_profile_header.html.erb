@@ -8,7 +8,7 @@
                             <div class="user-profile-cover-left-content">
                                 <!-- Avatar -->
                                 <div class="user-avatar">
-                                    <%= user_avatar(@user, "Avatar", "img-fluid rounded-circle-100")%>              
+                                    <%= profile_avatar(@user, "Avatar", "img-fluid rounded-circle-100")%>              
                                     <% if is_me?(@user) %>
                                         <div class="choose-profile-thumbnail">
                                             <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_thumbnail_path(@user), remote: true %>

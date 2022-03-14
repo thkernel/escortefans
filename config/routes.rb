@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # Default routes.
   #root 'home#index'
 
-  get 'home' => 'profiles#index', as: :profile
+  #get 'home' => 'profiles#index', as: :profile
+  get 'home' => 'profiles#index', as: :home
 
 
   # For profiles resources.
@@ -24,8 +25,8 @@ Rails.application.routes.draw do
   patch "/me/:uid/presentation" => "profiles#update_profile_presentation", as: :update_profile_presentation # After i would replace :login by slug
   get "/me/:uid/informations" => "profiles#profile_informations", as: :get_profile_informations # After i would replace :login by slug
   patch "/me/:uid/informations" => "profiles#update_profile_informations", as: :update_profile_informations # After i would replace :login by slug
-  get "/me/:uid/thumbnail" => "profiles#profile_thumbnail", as: :get_profile_thumbnail # After i would replace :login by slug
-  patch "/me/:uid/thumbnail" => "profiles#update_profile_thumbnail", as: :update_profile_thumbnail # After i would replace :login by slug
+  get "/me/:uid/change-profile-avatar" => "profiles#change_profile_avatar", as: :change_profile_avatar # After i would replace :login by slug
+  patch "/me/:uid/update-profile-avatar" => "profiles#update_profile_avatar", as: :update_profile_avatar # After i would replace :login by slug
 
   #get "update/me/:slug" => "profiles#show_his_profile", as: :show_my_profile # After i would replace :login by slug
 
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   
   devise_scope :user do
     authenticated :user do
-      root 'dashboard#index', as: :authenticated_root
+      root 'profiles#index', as: :authenticated_root
     end
 
     unauthenticated do

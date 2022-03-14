@@ -358,6 +358,7 @@ html, body{
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    
 }
 .profile-avatar {
     /*height: 100%;
@@ -367,6 +368,7 @@ html, body{
    
     display: inline-block;
     float: left;
+    border: 1px solid #0c0d11d6;
 }
 .profile-meta{
     display: inline-block;
@@ -608,4 +610,37 @@ html, body{
 }
 .block-content-wrap .list-2-cols li span{
     float: right;
+}
+
+.wd-32 {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.wd-50 {
+    width: 50px !important;
+    height: 50px !important;
+}
+.wd-80 {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.square-10 {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.bg-success {
+  background-color: #23BF08 !important;
+}
+
+.change-avatar{
+    text-align: center;
+    color: white;
+    background-color: #0c0d11d6;
+}
+.user-login{
+    text-align: center;
 }

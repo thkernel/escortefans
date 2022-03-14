@@ -5,7 +5,7 @@
   
 	<div class= "navbar-brand">
 		<% if user_signed_in? %>
-			<%= link_to profile_path do %>
+			<%= link_to home_path do %>
 			<%= image_tag "logo/logo.png" %> 
 			<% end %>
 
@@ -58,7 +58,7 @@
 <ul>
     <li class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     <%= user_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>
+     <%= profile_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to "Mon compte" , show_my_profile_path( current_user), class: "dropdown-item" %>

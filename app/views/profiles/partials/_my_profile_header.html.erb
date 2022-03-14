@@ -12,8 +12,14 @@
 								<!-- Profile avatar left -->
 								<div class="profile-avatar-left">
 									<div class="profile-avatar">
-									     <%= user_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>
+									     <%= profile_avatar(current_user, "Avatar", "wd-80 rounded-circle")%>
+									     
+									     <%= link_to change_profile_avatar_path, remote: true do %>
+										     <div class="change-avatar">
+										     	<i class="fa fa-camera" aria-hidden="true"></i>
 
+										     </div>
+										  <% end %>
 									</div>
 
 									<!-- Profile meta -->
@@ -25,7 +31,7 @@
 										</div>
 
 										<div class="profile-user-online">
-											en ligne
+											
 										</div>
 									</div>
 								</div>

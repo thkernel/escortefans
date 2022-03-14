@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy, :profile_thumbnail,:update_profile_thumbnail, :profile_presentation, :update_profile_presentation,:profile_informations, :update_profile_informations]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :change_profile_avatar,:update_profile_avatar, :profile_presentation, :update_profile_presentation,:profile_informations, :update_profile_informations]
  # This controller is reserved for all user authenticate users
  before_action :authenticate_user!
     
@@ -26,10 +26,11 @@ class ProfilesController < ApplicationController
 
   def profile_presentation
   end
+
   def update_profile_presentation
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(current_user.uid), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
@@ -44,14 +45,14 @@ class ProfilesController < ApplicationController
     #@user = User.find_by(slug: params[:slug])
   end
 
-  def profile_thumbnail
+  def change_profile_avatar
     #@user = User.find_by(slug: params[:slug])
   end
 
-  def update_profile_thumbnail
+  def update_profile_avatar
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user.slug), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(current_user.uid), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
@@ -65,7 +66,7 @@ class ProfilesController < ApplicationController
   def update_profile_informations
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user.slug), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(current_user), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
