@@ -6,27 +6,22 @@
 #  uid                :string
 #  first_name         :string
 #  last_name          :string
+#  nickname           :string
 #  sex                :string
 #  birth_date         :date
-#  full_address       :string
-#  street             :string
-#  state              :string
-#  city               :string
-#  country            :string
-#  latitude           :float
-#  longitude          :float
+#  escort_category_id :bigint
+#  nationality        :string
 #  presentation       :text
 #  marital_status     :string
-#  height             :float
-#  weight             :float
-#  eyes               :string
-#  hair               :string
 #  sexual_orientation :string
 #  occupation         :string
 #  astrology          :string
 #  religion           :string
-#  nationality        :string
+#  ethnicity          :string
 #  purpose            :string
+#  available          :string
+#  alcohol            :string
+#  smoking            :string
 #  user_id            :bigint           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -40,6 +35,7 @@ class Profile < ApplicationRecord
   before_save :generate_random_number_uid
   
   belongs_to :user
+  belongs_to :escort_category
 
   has_one_attached :avatar
 

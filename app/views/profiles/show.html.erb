@@ -1,0 +1,51 @@
+<div class="container profile-wrapper">
+	<!-- Profile header -->
+	<div class="user-profile-header">
+	    <%= render "profiles/partials/profile_header", profile: @profile %>
+	</div><!-- end profile header -->
+
+	<div class="user-profile-body">
+	    <!-- About section -->
+	    <div class="profile-presentation mb-15">
+	        <%= render "profiles/partials/profile_presentation", profile: @profile %>
+	    </div><!-- end -->
+
+	    <!-- About section -->
+	    <div class="profile-informations mb-15">
+	        <%= render "profiles/partials/profile_informations", profile: @profile %>
+	    </div><!-- end -->
+
+	    <!-- Physical appearence section -->
+	    <div class="physical-appearance mb-15">
+	        <%= render "profiles/partials/physical_appearance", profile: @profile %>
+	    </div><!-- end -->
+
+	    <!-- About section -->
+	    <div class="location mb-15">
+	        <%= render "profiles/partials/location", profile: @profile %>
+	    </div><!-- end -->
+
+	    <!-- About section -->
+	    <div class="language mb-15">
+	        <%= render "profiles/partials/language", profile: @profile %>
+	    </div><!-- end -->
+
+	    <!-- About section -->
+	    <div class="service mb-15">
+	        <%= render "profiles/partials/service", profile: @profile %>
+	    </div><!-- end -->
+	</div>
+    
+</div>
+
+<div id="user-profile-presentation-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
+<div id="user-profile-informations-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
+<div id="user-profile-location-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
+<div id="user-profile-physical-appearance-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
+<div id="user-profile-avatar-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
+<div id="new-message-modal" class="c-modal modal fade" data-backdrop="static"></div>

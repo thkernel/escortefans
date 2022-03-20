@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: physical_appearances
+#
+#  id         :bigint           not null, primary key
+#  uid        :string
+#  height     :float            default(0.0)
+#  weight     :float            default(0.0)
+#  corpulence :string
+#  eye        :string
+#  hair       :string
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  user: one
+
+two:
+  uid: MyString
+  user: two

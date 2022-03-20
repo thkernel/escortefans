@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Escort Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @escort_categories.each do |escort_category| %>
+      <tr>
+        <td><%= escort_category.uid %></td>
+        <td><%= escort_category.name %></td>
+        <td><%= escort_category.description %></td>
+        <td><%= escort_category.status %></td>
+        <td><%= escort_category.user %></td>
+        <td><%= link_to 'Show', escort_category %></td>
+        <td><%= link_to 'Edit', edit_escort_category_path(escort_category) %></td>
+        <td><%= link_to 'Destroy', escort_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Escort Category', new_escort_category_path %>

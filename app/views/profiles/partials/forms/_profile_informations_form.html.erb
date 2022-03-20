@@ -1,0 +1,91 @@
+<%= form_with(model: profile, url: update_profile_informations_path , local: false) do |form| %>
+ 
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :birth_date, "Date de naissaince", class: "required" %>
+          <%= form.date_field :birth_date, id: :profile_birth_date, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :sex, "Sexe", class: "required" %>
+          <%= form.select :sex, SEX,   {prompt: "Je suis un(e)"},  class: "form-control", required: true %>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :marital_status, "Situation matrimoniale" %>
+          <%= form.select :marital_status, MARITAL_STATUS,   {prompt: "Je suis "},  class: "form-control", required: true %>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :escort_category_id, "Catégorie", class: "required" %>
+              <%= form.collection_select :escort_category_id, @escort_categories, :id, :name,   {prompt: "Sélectionner "},  class: "form-control", required: true %>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :nationality, "Nationalité", class: "required" %>
+              <%= form.text_field :nationality,  class: "form-control", placeholder: "Nationalité", required: true %>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :religion, "Réligion", class: "required" %>
+              <%= form.text_field :religion,  class: "form-control", placeholder: "Réligion" %>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :ethnicity, "Ethnie", class: "required" %>
+              <%= form.text_field :ethnicity,  class: "form-control", placeholder: "Ethnie" %>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :sexual_orientation, "Orientation sexuelle", class: "required" %>
+          <%= form.select :sexual_orientation, SEXUAL_ORIENTATION,   {prompt: "Sélectionner"},  class: "form-control", required: true %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :available, "Disponible", class: "required" %>
+          <%= form.select :available, AVAILABILITY,   {prompt: "Sélectionner "},  class: "form-control", required: true %>
+        </div>
+      </div>
+
+
+      
+
+      
+
+    </div>
+
+
+
+ </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

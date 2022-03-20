@@ -1,0 +1,72 @@
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left">
+            <strong>Informations de base</strong>
+        </div>
+        <div class="pull-right">
+            <% if is_me?(@profile.user)%>
+                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_informations_path(@profile), remote: true %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block-content-wrap">
+                    <ul class="list-2-cols list-unstyled">
+                        
+                        <li class="detail-city">
+                            <strong>Sexe:</strong> 
+                            <span><%= @profile.sex %></span>
+                        </li>
+                        <li class="detail-state">
+                            <strong>Situation matrimoniale:</strong> 
+                            <span><%= "#{@profile.marital_status} " %></span>
+                        </li>
+                        <li class="detail-zip">
+                            <strong>Âge:</strong> 
+                            <span><%= "#{user_age(@profile.birth_date)}" %></span>
+                        </li>
+
+                         <li class="detail-zip">
+                            <strong>Catégorie:</strong> 
+                            <span><%= @profile.escort_category.name if @profile.escort_category.present? %></span>
+                        </li>
+
+                        <li class="detail-country">
+                            <strong>Nationalité:</strong> 
+                            <span><%= @profile.nationality %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Ethnie:</strong> 
+                            <span><%= @profile.ethnicity %></span>
+                        </li>
+                        
+                        <li class="detail-area">
+                            <strong>Orientation sexuelle:</strong> 
+                            <span><%= "#{@profile.sexual_orientation} " %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Réligion:</strong> 
+                            <span><%= @profile.religion %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Fonction:</strong> 
+                           <span><%= "#{@profile.occupation} " %></span>
+                        </li> 
+                        <li class="detail-country">
+                            <strong>Astrologie:</strong> 
+                            <span><%= "#{@profile.astrology} " %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Disponible:</strong> 
+                            <span><%= "#{@profile.available} " %></span>
+                        </li> 
+                                   
+                    </ul>   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

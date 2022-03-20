@@ -5,7 +5,7 @@ $("ul.errors").html("");
     $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
   <% end %>
 <% else %>
-  $(".user-profile-presentation").html("<%= escape_javascript(render 'profiles/partials/user_profile_presentation') %>");
+  $(".profile-presentation").html("<%= escape_javascript(render 'profiles/partials/profile_presentation') %>");
   $("#user-profile-presentation-modal").modal("hide");
  
 <% end %>

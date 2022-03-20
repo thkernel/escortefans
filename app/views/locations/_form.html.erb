@@ -1,0 +1,52 @@
+<%= form_with(model: location, local: true) do |form| %>
+  <% if location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :city, "Ville", class: "required" %>
+          <%= form.text_field :city, id: :profile_city, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :country, "Pays", class: "required" %>
+          <%= form.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>                          
+
+        </div>
+      </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

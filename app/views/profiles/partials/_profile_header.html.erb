@@ -1,0 +1,38 @@
+<div class="row mb-15">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="user-profile-cover">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="user-profile-cover-left-content">
+                                <!-- Avatar -->
+                                <div class="user-avatar">
+                                    <%= profile_avatar(@profile.user, "Avatar", "img-fluid rounded-circle-100")%>              
+                                    <% if is_me?(@profile.user) %>
+                                        <div class="choose-profile-thumbnail">
+                                            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), change_profile_avatar_path(@profile), remote: true %>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            
+                                <!-- Username --->
+                                <div class="user-login">
+                                    <%=  @profile.user.login %> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="user-profile-cover-right-content pull-right">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-meta-menu">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

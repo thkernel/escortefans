@@ -1,0 +1,2 @@
+module AstrologiesHelper
+end

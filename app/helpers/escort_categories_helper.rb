@@ -1,0 +1,2 @@
+module EscortCategoriesHelper
+end

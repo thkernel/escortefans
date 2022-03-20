@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   def update_profile_presentation
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user.uid), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(@profile), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
@@ -42,17 +42,18 @@ class ProfilesController < ApplicationController
   end
 
   def profile_informations
-    #@user = User.find_by(slug: params[:slug])
+    @escort_categories = EscortCategory.all
+    
   end
 
   def change_profile_avatar
-    #@user = User.find_by(slug: params[:slug])
+    
   end
 
   def update_profile_avatar
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user.uid), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(@profile), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
@@ -66,7 +67,7 @@ class ProfilesController < ApplicationController
   def update_profile_informations
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to show_my_profile_path(current_user), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to show_my_profile_path(@profile), notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
         format.js
       else
@@ -79,6 +80,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
+
     @profile = Profile.new
   end
 
@@ -132,12 +134,14 @@ class ProfilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     
     def set_profile
-      user = User.find_by(uid: params[:uid])
-      @profile = user.profile
+      #user = User.find_by(uid: params[:uid])
+      @profile = Profile.find_by(uid: params[:uid])
+      #@profile = user.profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :sex, :birth_date, :full_address, :about, :marital_status, :cut, :weight, :eyes, :hair, :sexual_orientation, :occupation, :astrology, :region, :nationality, :purpose, :presentation, :avatar)
+      params.require(:profile).permit(:first_name, :last_name, :sex, :birth_date,  :marital_status, :escort_category_id,  :sexual_orientation, :occupation, :astrology, :religion, :nationality, :purpose, :presentation,:alcohol, :smoking,  :available )
     end
 end
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags site: APPLICATION_NAME %>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+    
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/partials/google_analytics' %>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <%= render "layouts/partials/header"%>
+   
+    
+    <div class="container profil-wraper">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- Sidebar -->
+                <%= render "layouts/partials/sidebar" %>
+            </div>
+            <div class="col-md-10">
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+  </body>
+</html>

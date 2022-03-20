@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left">
+            <strong>Coordonnées</strong>
+        </div>
+        <div class="pull-right">
+            <% if is_me?(@profile.user)%>
+                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_informations_path(@profile.uid), remote: true %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block-content-wrap">
+                    <ul class="list-2-cols list-unstyled">
+                        
+                        <li class="detail-zip">
+                            <strong>Ville:</strong> 
+                            <span><%= "#{@profile.user.location.city} "  %></span>
+                        </li>
+                        <li class="detail-zip">
+                            <strong>Pays:</strong> 
+                            <span><%= "#{@profile.user.location.country}" %></span>
+                        </li>
+                        <li class="detail-zip">
+                            <strong>Téléphone:</strong> 
+                            <span><%= "#{@profile.user.location.phone_number}" %></span>
+                        </li>
+                        
+                                  
+                    </ul>   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

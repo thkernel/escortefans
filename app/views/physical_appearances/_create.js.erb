@@ -1,0 +1,10 @@
+$("ul.errors").html("");
+<% if @physical_appearance.errors.any? %>
+  <% @physical_appearance.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+  <% end %>
+<% else %>
+  $(".physical-appearance").html("<%= escape_javascript(render 'profiles/partials/physical_appearance') %>");
+  $("#user-profile-physical-appearance-modal").modal("hide");
+ 
+<% end %>

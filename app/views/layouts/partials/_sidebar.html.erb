@@ -5,7 +5,7 @@
         <div class="row">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <%= link_to show_my_profile_path( current_user), class: "nav-link" do %>   
+                    <%= link_to show_my_profile_path( current_user.profile), class: "nav-link" do %>   
                         <!-- Avatar -->
                         <div class="user-avatar">
                             <%= profile_avatar(current_user, "Avatar", "wd-80 rounded-circle")%>              
@@ -30,7 +30,7 @@
             <div class="row">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <%= link_to home_path, class: "nav-link active" do  %>
+                        <%= link_to feeds_path, class: "nav-link active" do  %>
                              <span class="icon">
                                 <i class="fa fa-newspaper-o" aria-hidden="true"></i>                
                              </span>

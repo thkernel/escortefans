@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Astrologies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @astrologies.each do |astrology| %>
+      <tr>
+        <td><%= astrology.uid %></td>
+        <td><%= astrology.name %></td>
+        <td><%= astrology.status %></td>
+        <td><%= link_to 'Show', astrology %></td>
+        <td><%= link_to 'Edit', edit_astrology_path(astrology) %></td>
+        <td><%= link_to 'Destroy', astrology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Astrology', new_astrology_path %>

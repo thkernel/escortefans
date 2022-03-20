@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_144655) do
+ActiveRecord::Schema.define(version: 2022_03_15_043045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2022_01_30_144655) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "escort_categories", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_escort_categories_on_user_id"
+  end
+
   create_table "features", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -44,6 +55,31 @@ ActiveRecord::Schema.define(version: 2022_01_30_144655) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_languages_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "uid"
+    t.string "full_address"
+    t.string "street"
+    t.string "state"
+    t.string "city"
+    t.string "country"
+    t.string "phone_number"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "permission_items", force: :cascade do |t|
@@ -67,34 +103,43 @@ ActiveRecord::Schema.define(version: 2022_01_30_144655) do
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
 
+  create_table "physical_appearances", force: :cascade do |t|
+    t.string "uid"
+    t.float "height", default: 0.0
+    t.float "weight", default: 0.0
+    t.string "corpulence"
+    t.string "eye"
+    t.string "hair"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_physical_appearances_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "uid"
     t.string "first_name"
     t.string "last_name"
+    t.string "nickname"
     t.string "sex"
     t.date "birth_date"
-    t.string "full_address"
-    t.string "street"
-    t.string "state"
-    t.string "city"
-    t.string "country"
-    t.float "latitude"
-    t.float "longitude"
+    t.bigint "escort_category_id"
+    t.string "nationality"
     t.text "presentation"
     t.string "marital_status"
-    t.float "height"
-    t.float "weight"
-    t.string "eyes"
-    t.string "hair"
     t.string "sexual_orientation"
     t.string "occupation"
     t.string "astrology"
     t.string "religion"
-    t.string "nationality"
+    t.string "ethnicity"
     t.string "purpose"
+    t.string "available"
+    t.string "alcohol"
+    t.string "smoking"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["escort_category_id"], name: "index_profiles_on_escort_category_id"
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
@@ -107,12 +152,33 @@ ActiveRecord::Schema.define(version: 2022_01_30_144655) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.float "price"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
+  create_table "social_links", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "url"
+    t.string "icon"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_social_links_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uid"
     t.string "login"
-    t.string "nickname"
     t.bigint "role_id", null: false
-    t.string "status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -139,10 +205,30 @@ ActiveRecord::Schema.define(version: 2022_01_30_144655) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "working_hours", force: :cascade do |t|
+    t.string "uid"
+    t.string "working_day"
+    t.time "start_hour"
+    t.time "end_hour"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_working_hours_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "escort_categories", "users"
+  add_foreign_key "languages", "users"
+  add_foreign_key "locations", "users"
   add_foreign_key "permission_items", "permissions"
   add_foreign_key "permissions", "features"
   add_foreign_key "permissions", "roles"
+  add_foreign_key "physical_appearances", "users"
+  add_foreign_key "profiles", "escort_categories"
   add_foreign_key "profiles", "users"
+  add_foreign_key "services", "users"
+  add_foreign_key "social_links", "users"
   add_foreign_key "users", "roles"
+  add_foreign_key "working_hours", "users"
 end

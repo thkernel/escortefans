@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left">
+            <strong>Physique</strong>
+        </div>
+        <div class="pull-right">
+            <% if is_me?(@profile.user)%>
+                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), user_physical_appearance_path(@profile.user), remote: true %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block-content-wrap">
+                    <ul class="list-2-cols list-unstyled">
+                        
+
+
+                        <li class="detail-country">
+                            <strong>Corpulance:</strong> 
+                            <span><%= @profile.user.physical_appearance.corpulence  if @profile.user.physical_appearance.present? %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Taille:</strong> 
+                            <span><%= @profile.user.physical_appearance.height  if @profile.user.physical_appearance.present? %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Poids:</strong>
+                            <span><%= @profile.user.physical_appearance.weight  if @profile.user.physical_appearance.present? %></span>
+                        </li>
+                        <li class="detail-country">
+                            <strong>Cheveux:</strong> 
+                            <span><%= @profile.user.physical_appearance.hair  if @profile.user.physical_appearance.present? %></span>
+                        </li>
+
+                        <li class="detail-country">
+                            <strong>Yeux:</strong> 
+                            <span><%= @profile.user.physical_appearance.eye  if @profile.user.physical_appearance.present? %></span>
+                        </li>  
+                        
+                                  
+                    </ul>   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

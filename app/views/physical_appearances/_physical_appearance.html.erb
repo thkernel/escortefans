@@ -1,0 +1,6 @@
+<% if @physical_appearance.new_record? %>
+	<%= render 'new', physical_appearance: @physical_appearance %>
+
+<% else %>
+	<%= render 'edit', physical_appearance: @physical_appearance %>
+<% end %>

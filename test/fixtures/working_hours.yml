@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: working_hours
+#
+#  id          :bigint           not null, primary key
+#  uid         :string
+#  working_day :string
+#  start_hour  :time
+#  end_hour    :time
+#  status      :string
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  day: MyString
+  start_hour: 2022-03-15 04:30:45
+  end_hour: 2022-03-15 04:30:45
+  status: MyString
+  user: one
+
+two:
+  uid: MyString
+  day: MyString
+  start_hour: 2022-03-15 04:30:45
+  end_hour: 2022-03-15 04:30:45
+  status: MyString
+  user: two

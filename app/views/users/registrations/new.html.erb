@@ -17,42 +17,58 @@
 					
 						<p class="card-text">
 
-								<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-									
-										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-group">
-													<%= f.text_field :login, autofocus: true, placeholder: "Pseudo", class: "form-control", required: true %>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<%= f.fields_for :profile do |p| %>
-													<div class="form-group">
-														<%= p.select :sex, SEX,   {prompt: "Je suis un(e)"},  class: "form-control", required: true %>
-													</div>
-												<% end %>
-											</div>
+							<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+								<div class="row">
+									<%= render "devise/shared/error_messages", resource: resource %>
 
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<%= f.collection_select :role_id , @roles, :id, :name, {prompt: "Type de compte"}, class: "form-control", required: true %>
 										</div>
-									
-										<!-- Profile nested form -->
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-group">
+											<%= f.text_field :login, autofocus: true, placeholder: "Nom d'utilisateur", class: "form-control", required: true %>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-6">
 										<%= f.fields_for :profile do |p| %>
-											
+											<div class="form-group">
+												<%= p.select :sex, SEX,   {prompt: "Je suis un(e)"},  class: "form-control", required: true %>
+											</div>
+										<% end %>
+									</div>
 
-											<div class="row">
+									<div class="col-sm-6">
+										<%= f.fields_for :profile do |p| %>
+											<div class="form-group">
 
-												
-												<div class="col-sm-6">
-													
-													<div class="form-group">
-														<%= p.collection_select(:country, ISO3166::Country.countries.sort_by(&:iso_short_name).collect { |c| [ c.iso_short_name, "#{c.iso_short_name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>													
+												<%= p.date_field :birth_date,  class: "form-control", required: true %>
+											</div>
+										<% end %>
+									</div>
+
+								</div>
+									
+								<!-- Location nested form -->
+								<%= f.fields_for :location do |l| %>
+									<div class="row">
+										<div class="col-sm-6">	
+											<div class="form-group">
+												<%= l.collection_select(:country, ISO3166::Country.countries.sort_by(&:iso_short_name).collect { |c| [ c.iso_short_name, "#{c.iso_short_name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>													
 													</div>
 												
 												</div>
 												<div class="col-sm-6">
 													
 													<div class="form-group">
-														<%= p.text_field :city, class: "form-control", placeholder: "Ville",  required: true %>													
+														<%= l.text_field :city, class: "form-control", placeholder: "Ville",  required: true %>													
 													</div>
 												
 												</div>

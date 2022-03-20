@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :astrologies
+  resources :sexual_orientations
+  resources :sexes
+  resources :working_hours
+  resources :escort_categories
+  resources :physical_appearances
+  resources :languages
+  resources :social_links
+  resources :social_media
+  resources :locations
+  resources :langues
+  resources :services
+
+  get "physical-appearance/:uid" => "physical_appearances#physical_appearance", as: :user_physical_appearance
   get 'cgu' => "pages#cgu", as: :cgu
   get 'cookies' => "pages#cookies", as: :cookies
   get 'advertise' => "pages#advertise", as: :advertise
@@ -16,21 +30,23 @@ Rails.application.routes.draw do
 
   #get 'home' => 'profiles#index', as: :profile
   get 'home' => 'profiles#index', as: :home
+  get 'feeds' => 'feeds#index', as: :feeds
 
 
   # For profiles resources.
-  get "/me/:uid" => "profiles#show_my_profile", as: :show_my_profile # After i would replace :login by slug
+  
   get "/me/:uid/presentation" => "profiles#profile_presentation", as: :get_profile_presentation # After i would replace :login by slug
   #post "/me/:slug/presentation" => "profiles#update_profile_presentation", as: :post_profile_presentation # After i would replace :login by slug
   patch "/me/:uid/presentation" => "profiles#update_profile_presentation", as: :update_profile_presentation # After i would replace :login by slug
+  
   get "/me/:uid/informations" => "profiles#profile_informations", as: :get_profile_informations # After i would replace :login by slug
   patch "/me/:uid/informations" => "profiles#update_profile_informations", as: :update_profile_informations # After i would replace :login by slug
   get "/me/:uid/change-profile-avatar" => "profiles#change_profile_avatar", as: :change_profile_avatar # After i would replace :login by slug
   patch "/me/:uid/update-profile-avatar" => "profiles#update_profile_avatar", as: :update_profile_avatar # After i would replace :login by slug
 
   #get "update/me/:slug" => "profiles#show_his_profile", as: :show_my_profile # After i would replace :login by slug
-
-  get "/profile/:uid" => "profiles#show_his_profile", as: :show_his_profile # After i would replace :login by slug
+  get "/me/:uid" => "profiles#show", as: :show_my_profile # After i would replace :login by slug
+  get "/profile/:uid" => "profiles#show", as: :show_his_profile # After i would replace :login by slug
  # get "update/profile/:slug" => "profiles#show_his_profile", as: :show_his_profile # After i would replace :login by slug
 
   get "message/new/:recipient_id/" => "messages#new", as: :send_new_message
@@ -40,7 +56,7 @@ Rails.application.routes.draw do
   
   devise_scope :user do
     authenticated :user do
-      root 'profiles#index', as: :authenticated_root
+      root 'feeds#index', as: :authenticated_root
     end
 
     unauthenticated do

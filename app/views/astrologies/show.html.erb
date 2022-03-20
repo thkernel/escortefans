@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @astrology.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @astrology.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @astrology.status %>
+</p>
+
+<%= link_to 'Edit', edit_astrology_path(@astrology) %> |
+<%= link_to 'Back', astrologies_path %>

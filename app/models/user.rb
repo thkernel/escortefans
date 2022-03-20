@@ -3,11 +3,9 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  uid                    :string
 #  login                  :string
-#  slug                   :string
-#  role_id                :bigint
-#  identifier             :string
-#  status                 :string           default("Enabled"), not null
+#  role_id                :bigint           not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -46,6 +44,8 @@ class User < ApplicationRecord
 
 
   has_one :profile, dependent: :destroy
+  has_one :location, dependent: :destroy
+  has_one :physical_appearance, dependent: :destroy
 
   # For FriendlyID
   #extend FriendlyId
@@ -53,6 +53,7 @@ class User < ApplicationRecord
   
   # Add nested attributes for profile.
   accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :location
 
  
   has_many :messages, :dependent => :destroy

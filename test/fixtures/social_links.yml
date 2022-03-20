@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: social_links
+#
+#  id         :bigint           not null, primary key
+#  uid        :string
+#  name       :string
+#  url        :string
+#  icon       :string
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  name: MyString
+  url: MyString
+  user: one
+
+two:
+  uid: MyString
+  name: MyString
+  url: MyString
+  user: two
