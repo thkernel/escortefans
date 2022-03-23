@@ -1,0 +1,10 @@
+$("ul.errors").html("");
+<% if @location.errors.any? %>
+  <% @location.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
+  <% end %>
+<% else %>
+  $(".location").html("<%= escape_javascript(render 'profiles/partials/location') %>");
+  $("#user-profile-location-modal").modal("hide");
+ 
+<% end %>

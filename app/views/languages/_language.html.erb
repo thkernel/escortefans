@@ -1,0 +1,6 @@
+<% if @language.new_record? %>
+	<%= render 'new', language: @language %>
+
+<% else %>
+	<%= render 'edit', language: @language %>
+<% end %>

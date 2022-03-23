@@ -1,52 +1,36 @@
-<%= form_with(model: location, local: true) do |form| %>
-  <% if location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<%= form_with(model: location, local: false) do |form| %>
+  <div class="modal-body">
+    <ul class="errors"></ul>
 
-      <ul>
-      <% location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
-
-  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
         <div class="form-group">
-          <%= form.label :city, "Ville", class: "required" %>
-          <%= form.text_field :city, id: :profile_city, class: "form-control" %>
+          <%= form.label :full_address, "Adresse" %>
+          <%= form.text_field :full_address, class: "form-control", placeholder: "Adresse" %>
         </div>
-      </div>
 
-      <div class="col-md-6">
+        
+
         <div class="form-group">
           <%= form.label :country, "Pays", class: "required" %>
           <%= form.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>                          
-
         </div>
-      </div>
+        <div class="form-group">
+          <%= form.label :city, "Ville", class: "required" %>
+          <%= form.text_field :city, class: "form-control" %>
+        </div>
 
-  <div class="actions">
-    <%= form.submit %>
+        <div class="form-group">
+          <%= form.label :phone_number, "Téléphone" %>
+          <%= form.text_field :phone_number, class: "form-control", placeholder: "Téléphone" %>
+        </div>
+
+      </div>
+    </div>
+      
+    </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
   </div>
 <% end %>

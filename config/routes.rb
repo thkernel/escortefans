@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  resources :astrologies
-  resources :sexual_orientations
-  resources :sexes
+  resources :language_items
+  resources :service_users
+  
   resources :working_hours
   resources :escort_categories
   resources :physical_appearances
   resources :languages
   resources :social_links
-  resources :social_media
   resources :locations
-  resources :langues
+  
+  
   resources :services
 
   get "physical-appearance/:uid" => "physical_appearances#physical_appearance", as: :user_physical_appearance
+  get "location/:uid" => "locations#location", as: :user_location
+  get "language/:uid" => "languages#language", as: :user_language
+  
   get 'cgu' => "pages#cgu", as: :cgu
   get 'cookies' => "pages#cookies", as: :cookies
   get 'advertise' => "pages#advertise", as: :advertise

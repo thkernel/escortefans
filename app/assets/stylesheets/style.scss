@@ -644,3 +644,8 @@ html, body{
 .user-login{
     text-align: center;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+  
+  color: white !important;
+}

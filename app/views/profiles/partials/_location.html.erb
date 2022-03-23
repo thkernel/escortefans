@@ -5,7 +5,7 @@
         </div>
         <div class="pull-right">
             <% if is_me?(@profile.user)%>
-                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_informations_path(@profile.uid), remote: true %>
+                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), user_location_path(@profile.user), remote: true %>
             <% end %>
         </div>
     </div>
@@ -17,15 +17,15 @@
                         
                         <li class="detail-zip">
                             <strong>Ville:</strong> 
-                            <span><%= "#{@profile.user.location.city} "  %></span>
+                            <span><%= @profile.user.location.city if @profile.user.location  %></span>
                         </li>
                         <li class="detail-zip">
                             <strong>Pays:</strong> 
-                            <span><%= "#{@profile.user.location.country}" %></span>
+                            <span><%= @profile.user.location.country if @profile.user.location %></span>
                         </li>
                         <li class="detail-zip">
                             <strong>Téléphone:</strong> 
-                            <span><%= "#{@profile.user.location.phone_number}" %></span>
+                            <span><%= @profile.user.location.phone_number if @profile.user.location %></span>
                         </li>
                         
                                   

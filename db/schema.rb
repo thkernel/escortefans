@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_15_043045) do
+ActiveRecord::Schema.define(version: 2022_03_23_061919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2022_03_15_043045) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "language_items", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "language_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_language_items_on_language_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -152,6 +161,16 @@ ActiveRecord::Schema.define(version: 2022_03_15_043045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "service_users", force: :cascade do |t|
+    t.bigint "service_id"
+    t.float "price", default: 0.0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_service_users_on_service_id"
+    t.index ["user_id"], name: "index_service_users_on_user_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -219,6 +238,7 @@ ActiveRecord::Schema.define(version: 2022_03_15_043045) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "escort_categories", "users"
+  add_foreign_key "language_items", "languages"
   add_foreign_key "languages", "users"
   add_foreign_key "locations", "users"
   add_foreign_key "permission_items", "permissions"
@@ -227,6 +247,8 @@ ActiveRecord::Schema.define(version: 2022_03_15_043045) do
   add_foreign_key "physical_appearances", "users"
   add_foreign_key "profiles", "escort_categories"
   add_foreign_key "profiles", "users"
+  add_foreign_key "service_users", "services"
+  add_foreign_key "service_users", "users"
   add_foreign_key "services", "users"
   add_foreign_key "social_links", "users"
   add_foreign_key "users", "roles"

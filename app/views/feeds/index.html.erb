@@ -21,7 +21,7 @@
                                         <%= link_to "#{user.login.humanize}", show_his_profile_path(user.profile) %>
                                     </div>
                                     <div class="user-location title-normal title-black-light">
-                                        <%= "#{user.location.city }, #{user.location.country }" %>
+                                        <%= "#{user.location.city if user.location.present?},"  "#{user.location.country if user.location.present?}" %>
                                     </div>
                                     <div class="send-flirt">
                                         <!-- <button class="btn btn-outline-primary">Flirter</button> -->

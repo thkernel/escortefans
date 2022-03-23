@@ -17,6 +17,9 @@ class Language < ApplicationRecord
 
 
   belongs_to :user
+  has_many :language_items
+  
+  accepts_nested_attributes_for :language_items
 
   # Change default params ID to uid
   def to_param

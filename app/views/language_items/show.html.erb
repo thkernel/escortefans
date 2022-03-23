@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @language_item.uid %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @language_item.language %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @language_item.name %>
+</p>
+
+<%= link_to 'Edit', edit_language_item_path(@language_item) %> |
+<%= link_to 'Back', language_items_path %>

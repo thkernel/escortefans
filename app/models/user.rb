@@ -46,6 +46,9 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_one :location, dependent: :destroy
   has_one :physical_appearance, dependent: :destroy
+  has_one :language, dependent: :destroy
+  #has_one :language, dependent: :destroy
+
 
   # For FriendlyID
   #extend FriendlyId

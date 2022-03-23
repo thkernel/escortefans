@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Language Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Language</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @language_items.each do |language_item| %>
+      <tr>
+        <td><%= language_item.uid %></td>
+        <td><%= language_item.language %></td>
+        <td><%= language_item.name %></td>
+        <td><%= link_to 'Show', language_item %></td>
+        <td><%= link_to 'Edit', edit_language_item_path(language_item) %></td>
+        <td><%= link_to 'Destroy', language_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Language Item', new_language_item_path %>

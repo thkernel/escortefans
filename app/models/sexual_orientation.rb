@@ -1,2 +1,0 @@
-class SexualOrientation < ApplicationRecord
-end

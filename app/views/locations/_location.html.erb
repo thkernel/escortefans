@@ -1,0 +1,6 @@
+<% if @location.new_record? %>
+	<%= render 'new', location: @location %>
+
+<% else %>
+	<%= render 'edit', location: @location %>
+<% end %>

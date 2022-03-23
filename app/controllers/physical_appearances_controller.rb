@@ -26,7 +26,7 @@ class PhysicalAppearancesController < ApplicationController
     end
 
 
-    puts "User physical appearance: #{user.inspect}"
+    
   end
 
   # GET /physical_appearances/1/edit

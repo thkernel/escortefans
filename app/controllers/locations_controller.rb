@@ -10,6 +10,21 @@ class LocationsController < ApplicationController
   def show
   end
 
+  def location
+    uid = params[:uid]
+   
+    user = User.find_by(uid: uid)
+
+    
+    if user.present? && user.location.present?
+      @location = user.location
+      
+    else
+      @location = Location.new
+
+    end
+  end
+
   # GET /locations/new
   def new
     @location = Location.new
@@ -21,12 +36,14 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
-    @location = Location.new(location_params)
+    @location = current_user.build_location(location_params)
 
     respond_to do |format|
       if @location.save
+        @profile = current_user.profile
         format.html { redirect_to location_url(@location), notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @location.errors, status: :unprocessable_entity }
@@ -38,11 +55,15 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
+        @profile = current_user.profile
         format.html { redirect_to location_url(@location), notice: "Location was successfully updated." }
         format.json { render :show, status: :ok, location: @location }
+        format.js
       else
+        
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @location.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -60,11 +81,11 @@ class LocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
-      @location = Location.find(params[:id])
+      @location = Location.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:uid, :address, :city, :country, :user_id)
+      params.require(:location).permit(:full_address, :city, :country, :phone_number)
     end
 end
