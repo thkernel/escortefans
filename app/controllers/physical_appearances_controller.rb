@@ -1,4 +1,5 @@
 class PhysicalAppearancesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_physical_appearance, only: %i[ show edit update destroy ]
 
   # GET /physical_appearances or /physical_appearances.json

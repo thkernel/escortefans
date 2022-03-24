@@ -13,13 +13,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block-content-wrap">
-                    <ul class="list-2-cols list-unstyled">
+                    
+                        <% if @profile.user.language.present? && @profile.user.language.language_items.present? %>
                         
-                        <li class="detail-zip">
-                            <strong>Ville:</strong> 
-                            <span></span>
-                        </li>
+                            <% @profile.user.language.language_items.each do |language_item| %>
+                                <span class="language-item"><%= language_item.name %></span>
+                            <% end %>
+                            
                         
+                        <% end %>
                         
                                   
                     </ul>   

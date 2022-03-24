@@ -1,0 +1,6 @@
+<% if @service_user.new_record? %>
+	<%= render 'new', service_user: @service_user %>
+
+<% else %>
+	<%= render 'edit', service_user: @service_user %>
+<% end %>

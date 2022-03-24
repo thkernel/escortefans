@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_061919) do
+ActiveRecord::Schema.define(version: 2022_03_24_045727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,13 +161,22 @@ ActiveRecord::Schema.define(version: 2022_03_23_061919) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "service_users", force: :cascade do |t|
+  create_table "service_user_items", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "service_user_id"
     t.bigint "service_id"
-    t.float "price", default: 0.0
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_service_user_items_on_service_id"
+    t.index ["service_user_id"], name: "index_service_user_items_on_service_user_id"
+  end
+
+  create_table "service_users", force: :cascade do |t|
+    t.string "uid"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_service_users_on_service_id"
     t.index ["user_id"], name: "index_service_users_on_user_id"
   end
 
@@ -247,7 +256,8 @@ ActiveRecord::Schema.define(version: 2022_03_23_061919) do
   add_foreign_key "physical_appearances", "users"
   add_foreign_key "profiles", "escort_categories"
   add_foreign_key "profiles", "users"
-  add_foreign_key "service_users", "services"
+  add_foreign_key "service_user_items", "service_users"
+  add_foreign_key "service_user_items", "services"
   add_foreign_key "service_users", "users"
   add_foreign_key "services", "users"
   add_foreign_key "social_links", "users"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :service_user_items
   resources :language_items
   resources :service_users
   
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   get "physical-appearance/:uid" => "physical_appearances#physical_appearance", as: :user_physical_appearance
   get "location/:uid" => "locations#location", as: :user_location
   get "language/:uid" => "languages#language", as: :user_language
+  get "service/:uid" => "service_users#service_user", as: :user_service
   
   get 'cgu' => "pages#cgu", as: :cgu
   get 'cookies' => "pages#cookies", as: :cookies

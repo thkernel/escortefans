@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Service User Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Service user</th>
+      <th>Service</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_user_items.each do |service_user_item| %>
+      <tr>
+        <td><%= service_user_item.uid %></td>
+        <td><%= service_user_item.service_user %></td>
+        <td><%= service_user_item.service %></td>
+        <td><%= service_user_item.price %></td>
+        <td><%= link_to 'Show', service_user_item %></td>
+        <td><%= link_to 'Edit', edit_service_user_item_path(service_user_item) %></td>
+        <td><%= link_to 'Destroy', service_user_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service User Item', new_service_user_item_path %>

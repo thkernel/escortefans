@@ -14,5 +14,16 @@
 #
 
 class Service < ApplicationRecord
-  belongs_to :user
+	include SharedUtils::Generate
+	
+  	before_save :generate_random_number_uid
+
+    belongs_to :user
+
+    has_many :service_user_items, dependent: :destroy
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
 end
