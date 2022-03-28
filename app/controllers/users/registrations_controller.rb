@@ -18,47 +18,50 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.build_profile
     resource.build_location
     respond_with self.resource
+
+
   end
-=begin
+
+
   def create
+    build_resource(sign_up_params)
+    
+    # Save
+    resource.save
+   
 
-      #profile_attributes = sign_up_params["profile_attributes"]
-      #profile_type = profile_attributes["profile_type"]
-      role_id = sign_up_params[:role_id]
-
-
-
-
-      puts "ROLE ID: #{role_id}"
-
-
-      unless role_id.present?
-        build_resource(sign_up_params.merge(role_id: Role.find_by(name: "user").id))
-      end
-
-      resource.save
-
-      puts "RESOURCE: #{resource.id}"
-
-      yield resource if block_given?
-      if resource.persisted?
-        if resource.active_for_authentication?
-          set_flash_message! :notice, :signed_up
-          sign_up(resource_name, resource)
-          respond_with resource, location: after_sign_up_path_for(resource)
-        else
-          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-          expire_data_after_sign_in!
-          respond_with resource, location: after_inactive_sign_up_path_for(resource)
-        end
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
       else
-        clean_up_passwords resource
-        set_minimum_password_length
-        respond_with resource
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
-     end
+    else
+      @roles = Role.where.not(name: ["Superuser", "Administrator", "Guest"])
+      
+      flash.now[:alert] = resource.errors.full_messages
+      render :new and return
 
-=end
+
+    end
+   
+
+    #@user = User.new(sign_up_params)
+    
+    #@user.build_profile(sign_up_params[:profile_attributes])
+    #unless @user.valid?
+      #flash.now[:alert] = @user.errors.full_messages
+      #@roles = Role.where.not(name: ["Superuser", "Administrator", "Guest"])
+      #render :new #and return
+    #end
+  end
+  
+
   # POST /resource
   #def create
     
@@ -126,7 +129,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_update_path_for(resource)
-    profile_path
+    feeds_path
   end
 
   def after_sign_in_path_for(resource)

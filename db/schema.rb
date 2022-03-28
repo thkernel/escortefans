@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
 
   create_table "languages", force: :cascade do |t|
     t.string "uid"
-    t.string "name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -183,7 +182,6 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
   create_table "services", force: :cascade do |t|
     t.string "uid"
     t.string "name"
-    t.float "price"
     t.text "description"
     t.string "status"
     t.bigint "user_id"

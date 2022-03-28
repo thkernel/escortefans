@@ -35,7 +35,7 @@ class Profile < ApplicationRecord
   before_save :generate_random_number_uid
   
   belongs_to :user
-  belongs_to :escort_category
+  belongs_to :escort_category, optional: true
 
   has_one_attached :avatar
 

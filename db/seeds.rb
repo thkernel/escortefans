@@ -51,9 +51,7 @@ unless User.all.present?
         {login: "administrator",  email: "administrator@gmail.com",  password: "AMOSXZIBITDE88", password_confirmation: "AMOSXZIBITDE88", role_id: Role.find_by(name: "Administrator").id},
         {login: "user",  email: "user@gmail.com",  password: "AMOSXZIBITDE88", password_confirmation: "AMOSXZIBITDE88", role_id:  Role.find_by(name: "User").id},
         {login: "guest",  email: "guest@gmail.com",  password: "AMOSXZIBITDE88", password_confirmation: "AMOSXZIBITDE88", role_id:  Role.find_by(name: "Guest").id},
-        {login: "driver",  email: "driver@gmail.com",  password: "AMOSXZIBITDE88", password_confirmation: "AMOSXZIBITDE88", role_id:  Role.find_by(name: "Driver").id},
-        {login: "demo",  email: "demo@gmail.com",  password: "demo2019", password_confirmation: "demo2019", role_id: Role.find_by(name: "Superuser").id}
-
+        
     
     ])
 else   
@@ -69,37 +67,25 @@ unless Profile.all.present?
             first_name: "Super",  
             last_name: "User",
             
-            user_id: User.find_by(login: "Superuser").id
+            user_id: User.find_by(login: "superuser").id
         },
         {
             first_name: "Root",  
             last_name: "Root",
            
-            user_id: User.find_by(login: "Administrator").id
+            user_id: User.find_by(login: "administrator").id
         },
         {
             first_name: "User",  
             last_name: "User",
           
-            user_id: User.find_by(login: "User").id
+            user_id: User.find_by(login: "user").id
         },
         {
             first_name: "Guest",  
             last_name: "Guest",
            
-            user_id: User.find_by(login: "Guest").id
-        },
-        {
-            first_name: "Demo",  
-            last_name: "Demo",
-            
-            user_id: User.find_by(login: "Demo").id
-        },
-        {
-            first_name: "Driver",  
-            last_name: "Driver",
-            
-            user_id: User.find_by(login: "Driver").id
+            user_id: User.find_by(login: "guest").id
         }
     
     ])
