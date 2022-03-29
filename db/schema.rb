@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_045727) do
+ActiveRecord::Schema.define(version: 2022_03_29_033412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
     t.index ["user_id"], name: "index_languages_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "liker_id"
+    t.bigint "liked_id"
+    t.datetime "removed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liked_id"], name: "index_likes_on_liked_id"
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "uid"
     t.string "full_address"
@@ -109,6 +120,30 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
     t.datetime "updated_at", null: false
     t.index ["feature_id"], name: "index_permissions_on_feature_id"
     t.index ["role_id"], name: "index_permissions_on_role_id"
+  end
+
+  create_table "photo_albums", force: :cascade do |t|
+    t.string "uid"
+    t.string "title"
+    t.string "description"
+    t.integer "size"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_photo_albums_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "photo_album_id"
+    t.string "caption"
+    t.text "description"
+    t.bigint "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_album_id"], name: "index_photos_on_photo_album_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "physical_appearances", force: :cascade do |t|
@@ -201,6 +236,26 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
     t.index ["user_id"], name: "index_social_links_on_user_id"
   end
 
+  create_table "unlikes", force: :cascade do |t|
+    t.string "uid"
+    t.bigint "unliker_id"
+    t.bigint "unliked_id"
+    t.datetime "removed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unliked_id"], name: "index_unlikes_on_unliked_id"
+    t.index ["unliker_id"], name: "index_unlikes_on_unliker_id"
+  end
+
+  create_table "user_views", force: :cascade do |t|
+    t.string "uid"
+    t.integer "number", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_views_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uid"
     t.string "login"
@@ -251,6 +306,9 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
   add_foreign_key "permission_items", "permissions"
   add_foreign_key "permissions", "features"
   add_foreign_key "permissions", "roles"
+  add_foreign_key "photo_albums", "users"
+  add_foreign_key "photos", "photo_albums"
+  add_foreign_key "photos", "users"
   add_foreign_key "physical_appearances", "users"
   add_foreign_key "profiles", "escort_categories"
   add_foreign_key "profiles", "users"
@@ -259,6 +317,7 @@ ActiveRecord::Schema.define(version: 2022_03_24_045727) do
   add_foreign_key "service_users", "users"
   add_foreign_key "services", "users"
   add_foreign_key "social_links", "users"
+  add_foreign_key "user_views", "users"
   add_foreign_key "users", "roles"
   add_foreign_key "working_hours", "users"
 end

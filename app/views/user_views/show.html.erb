@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @user_view.uid %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_view.user %>
+</p>
+
+<%= link_to 'Edit', edit_user_view_path(@user_view) %> |
+<%= link_to 'Back', user_views_path %>

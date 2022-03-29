@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :unlikes
+  resources :likes
+  resources :photos
+  resources :photo_albums
+  resources :user_views
   resources :service_user_items
   resources :language_items
   resources :service_users

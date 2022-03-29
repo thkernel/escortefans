@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Photo Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Size</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @photo_albums.each do |photo_album| %>
+      <tr>
+        <td><%= photo_album.uid %></td>
+        <td><%= photo_album.title %></td>
+        <td><%= photo_album.description %></td>
+        <td><%= photo_album.size %></td>
+        <td><%= photo_album.user %></td>
+        <td><%= link_to 'Show', photo_album %></td>
+        <td><%= link_to 'Edit', edit_photo_album_path(photo_album) %></td>
+        <td><%= link_to 'Destroy', photo_album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Photo Album', new_photo_album_path %>

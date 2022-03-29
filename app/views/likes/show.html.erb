@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @like.uid %>
+</p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @like.sender %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @like.recipient %>
+</p>
+
+<p>
+  <strong>Remove at:</strong>
+  <%= @like.remove_at %>
+</p>
+
+<%= link_to 'Edit', edit_like_path(@like) %> |
+<%= link_to 'Back', likes_path %>

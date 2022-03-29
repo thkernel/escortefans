@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @photo.uid %>
+</p>
+
+<p>
+  <strong>Photo album:</strong>
+  <%= @photo.photo_album %>
+</p>
+
+<p>
+  <strong>Aption:</strong>
+  <%= @photo.aption %>
+</p>
+
+<p>
+  <strong>Large source:</strong>
+  <%= @photo.large_source %>
+</p>
+
+<p>
+  <strong>Small source:</strong>
+  <%= @photo.small_source %>
+</p>
+
+<p>
+  <strong>Medium source:</strong>
+  <%= @photo.medium_source %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @photo.link %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @photo.user %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @photo.status %>
+</p>
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>

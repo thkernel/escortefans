@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Unlikes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Sender</th>
+      <th>Recipient</th>
+      <th>Remove at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unlikes.each do |unlike| %>
+      <tr>
+        <td><%= unlike.uid %></td>
+        <td><%= unlike.sender %></td>
+        <td><%= unlike.recipient %></td>
+        <td><%= unlike.remove_at %></td>
+        <td><%= link_to 'Show', unlike %></td>
+        <td><%= link_to 'Edit', edit_unlike_path(unlike) %></td>
+        <td><%= link_to 'Destroy', unlike, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unlike', new_unlike_path %>

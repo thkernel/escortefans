@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  photo_album: one
+  aption: MyString
+  large_source: MyString
+  small_source: MyString
+  medium_source: MyString
+  link: MyString
+  user: one
+  status: MyString
+
+two:
+  uid: MyString
+  photo_album: two
+  aption: MyString
+  large_source: MyString
+  small_source: MyString
+  medium_source: MyString
+  link: MyString
+  user: two
+  status: MyString

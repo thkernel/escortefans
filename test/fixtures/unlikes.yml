@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  sender: one
+  recipient: one
+  remove_at: 2022-03-29 03:34:12
+
+two:
+  uid: MyString
+  sender: two
+  recipient: two
+  remove_at: 2022-03-29 03:34:12

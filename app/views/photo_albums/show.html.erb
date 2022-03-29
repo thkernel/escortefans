@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @photo_album.uid %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @photo_album.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @photo_album.description %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @photo_album.size %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @photo_album.user %>
+</p>
+
+<%= link_to 'Edit', edit_photo_album_path(@photo_album) %> |
+<%= link_to 'Back', photo_albums_path %>

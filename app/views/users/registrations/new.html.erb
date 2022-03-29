@@ -1,39 +1,45 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-7">
-				<h1 class="display-3">
-					Faîtes des rencontres...
-				</h1>
-				<p>
-				Faîtes des rencontres sans jugements et sans préjugés, juste pour le plaisir !				
-				</p>
-			</div>
-			<div class="col-md-5">
-				<div class="card">
-					<div class="card-body">
-						<h3 class="card-title">Inscription</h3>
-					
-						<p class="card-text">
+<div class="hero">
+	<div class="hero-overlay">
+		<div class="hero-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-sm-7">
+						<div class="hero-content-title">
+							<h1 class="display-4 text-bold">
+								Vivez vos fantasmes!
+							</h1>
+						</div>
+						<div class="hero-content-description">
+							<p>
+							Découvrir des escortes girls et escortes boys et vivez votre fantasme en toute discrétion.				
+							</p>
+						</div>
+					</div>
+					<div class="col-md-5 col-sm-5">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Inscription</h3>
+							
+								<p class="card-text">
 
-							<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+								<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 								
-								<div class="row">
-									<div class="col-sm-12">
-									<%= render "users/shared/error_messages", resource: resource %>
+									<div class="row">
+										<div class="col-sm-12 col-md-12">
+										<%= render "users/shared/error_messages", resource: resource %>
 
+										</div>
 									</div>
-								</div>
 								
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-6 col-md-6">
 										<div class="form-group">
-											<%= f.collection_select :role_id , @roles, :id, :name, {prompt: "Type de compte"}, class: "form-control", required: true %>
+											<%= f.collection_select :role_id , @roles, :id, :name, {prompt: "Type de compte"}, class: "form-control", style:"width: 100%", required: true %>
 										</div>
 									</div>
 
-									<div class="col-sm-6">
+									<div class="col-sm-6 col-md-6">
 										<div class="form-group">
 											<%= f.text_field :login, autofocus: true, placeholder: "Nom d'utilisateur", class: "form-control", required: true %>
 										</div>
@@ -41,15 +47,15 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-6 col-md-6">
 										<%= f.fields_for :profile do |p| %>
 											<div class="form-group">
-												<%= p.select :sex, SEX,   {prompt: "Je suis un(e)"},  class: "form-control", required: true %>
+												<%= p.select :sex, SEX,   {prompt: "Je suis un(e)"},  class: "form-control",  style:"width: 100%",required: true %>
 											</div>
 										<% end %>
 									</div>
 
-									<div class="col-sm-6">
+									<div class="col-sm-6 col-md-6">
 										<%= f.fields_for :profile do |p| %>
 											<div class="form-group">
 
@@ -63,13 +69,13 @@
 								<!-- Location nested form -->
 								<%= f.fields_for :location do |l| %>
 									<div class="row">
-										<div class="col-sm-6">	
+										<div class="col-sm-6 col-md-6">	
 											<div class="form-group">
-												<%= l.collection_select(:country, ISO3166::Country.countries.sort_by(&:iso_short_name).collect { |c| [ c.iso_short_name, "#{c.iso_short_name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>													
+												<%= l.collection_select(:country, ISO3166::Country.countries.sort_by(&:iso_short_name).collect { |c| [ c.iso_short_name, "#{c.iso_short_name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', style:"width: 100%", required: true) %>													
 													</div>
 												
 												</div>
-												<div class="col-sm-6">
+												<div class="col-sm-6 col-md-6">
 													
 													<div class="form-group">
 														<%= l.text_field :city, class: "form-control", placeholder: "Ville",  required: true %>													
@@ -81,7 +87,7 @@
 										<% end %>
 									
 									<div class="row">
-										<div class="col-sm-12">
+										<div class="col-sm-12 col-md-12">
 											<div class="form-group">
 												<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control", required: true %>
 											</div>
@@ -90,7 +96,7 @@
 									<div class="row">
 										
 
-										<div class="col-sm-12">
+										<div class="col-sm-12 col-md-12">
 
 											<div class="form-group">
 												<%= f.password_field :password, autocomplete: "new-password", placeholder: "Mot de passe",  class: "form-control", required: true %>
@@ -101,7 +107,7 @@
 										
 									</div>
 									<div class="row">
-										<div class="col-sm-12">
+										<div class="col-sm-12 col-md-12">
 											<div class="form-group">
 												<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe", class: "form-control", required: true %>
 											</div>
@@ -110,7 +116,7 @@
 									</div>
 										
 									<div class="row">
-										<div class="col-sm-12">
+										<div class="col-sm-12 col-md-12">
 											<div class="form-group">
 												En continuant votre inscription, vous déclarez avoir plus de 18 ans et acceptez les <%= link_to "CGU", cgu_path %> de la plateforme.
 											</div>
@@ -123,10 +129,10 @@
 									
 								<% end %>
 							
-						</p>
+							</p>
+						</div>
 					</div>
-				</div>
-
+				</div><!-- End row -->
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,62 @@
+<%= form_with(model: photo, local: true) do |form| %>
+  <% if photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photo_album_id %>
+    <%= form.text_field :photo_album_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aption %>
+    <%= form.text_field :aption %>
+  </div>
+
+  <div class="field">
+    <%= form.label :large_source %>
+    <%= form.text_field :large_source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :small_source %>
+    <%= form.text_field :small_source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medium_source %>
+    <%= form.text_field :medium_source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

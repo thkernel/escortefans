@@ -72,7 +72,7 @@ class ServiceUsersController < ApplicationController
      # Create Scholarship study levels
      params[:service_user_items][:services].each do |service_user_item|
       unless service_user_item.empty?
-        @service_user.service_user_items.build(serice_id: service_user_item)
+        @service_user.service_user_items.build(service_id: service_user_item)
       end
     end
 
