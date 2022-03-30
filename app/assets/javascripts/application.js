@@ -21,7 +21,7 @@
 // require toastr
 //= require rails.validations
 // require cookies_eu
-// require google_analytics
+//= require google_analytics
 //= require select2
 
 
