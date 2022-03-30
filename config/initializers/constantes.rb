@@ -1,6 +1,6 @@
 APPLICATION_NAME = "Escortefans"
-APPLICATION_SLOGAN = ""
-APPLICATION_DESCRIPTION = ""
+APPLICATION_SLOGAN = "Passez des bons moments!"
+APPLICATION_DESCRIPTION = "Le plus grand réseau d'escorte girls et escorte boy au Monde."
 APPLICATION_KEYWORDS = []
 SEX = [["Femme"], ["Homme"]]
 MARITAL_STATUS = [["Célibataire"], ["Marié(e)"], ["Divorcé(e)"], ["Veuve"], ["Veuf"]]

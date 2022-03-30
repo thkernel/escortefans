@@ -96,9 +96,11 @@ gem 'pg_search', '~> 2.3'
 
 gem 'recaptcha', '~> 5.5'
 gem 'autoprefixer-rails', '~> 9.8', '>= 9.8.6.5'
-gem 'meta-tags', '~> 2.16' # For SEO
 
+gem 'meta-tags', '~> 2.16' # For SEO
 gem 'breadcrumbs_on_rails', '~> 4.0' # For SEO
+gem 'sitemap_generator', '~> 6.1', '>= 6.1.2' # For SEO
+
 # Gem allows to use `flag-icon-css` - a collection of all country flags in SVG - in your Rails projects
 gem 'flag-icons-rails', '~> 3.1'
 

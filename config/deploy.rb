@@ -22,8 +22,7 @@ set :repo_url, "https://github.com/thkernel/escortefans.git"
 # set :pty, true
 
 # Default value for :linked_files is []
- #append :linked_files, "config/database.yml", "config/master.key"
- append :linked_files, "config/database.yml", "config/master.key", "config/storage.yml", "config/meta.yml"#, ".env"
+ append :linked_files, "config/database.yml", "config/master.key", "config/storage.yml", "config/meta.yml"
 
 
 # Default value for linked_dirs is []

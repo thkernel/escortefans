@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -19,6 +20,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.build_location
     respond_with self.resource
 
+    @page_description = APPLICATION_DESCRIPTION
+    @page_keywords    = APPLICATION_KEYWORDS
 
   end
 
@@ -143,7 +146,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
 
-  
+  private
+    def check_captcha
+
+      user = User.new(sign_up_params)
+      
+      recaptcha_valid = verify_recaptcha(model: user, action: 'signup')
+      unless recaptcha_valid
+        self.resource = resource_class.new sign_up_params
+        
+        #The 2 next line is for profile
+        build_resource({})
+        resource.build_profile
+        resource.build_location
+
+        resource.validate # Look for any other validation errors besides reCAPTCHA
+        set_minimum_password_length
+        respond_with_navigational(resource) { render :new }
+      end 
+    end
 
   
 end
