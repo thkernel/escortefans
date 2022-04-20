@@ -48,6 +48,13 @@ class User < ApplicationRecord
   has_one :physical_appearance, dependent: :destroy
   has_one :language, dependent: :destroy
   has_one :service_user, dependent: :destroy
+  has_one :user_view, dependent: :destroy
+  
+  has_one :liked,  :class_name => "Like", :foreign_key => :liked_id
+  has_one :liker,  :class_name => "Like", :foreign_key => :liker_id
+  
+  has_one :unliked,  :class_name => "Like", :foreign_key => :unliked_id
+  has_one :unliker,  :class_name => "Like", :foreign_key => :unliker_id
 
 
   # For FriendlyID

@@ -5,7 +5,6 @@
 #  id          :bigint           not null, primary key
 #  uid         :string
 #  name        :string
-#  price       :float
 #  description :text
 #  status      :string
 #  user_id     :bigint

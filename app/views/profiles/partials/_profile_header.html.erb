@@ -24,7 +24,15 @@
                         </div>
                         <div class="col-md-7">
                             <div class="user-profile-cover-right-content pull-right">
-                                
+                                <% if !is_me?(@user) %>
+
+                                    
+
+                                    <%= link_to raw('<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>'), feeds_path, class: "btn btn-primary",  title: "Aimer" %>
+
+                                    <%= link_to raw('<i class="fa fa-star-o" aria-hidden="true"></i>'), feeds_path, class: "btn btn-primary",  title: "Favoris" %>
+                                    
+                                <% end %>
                             </div>
                         </div>
                     </div>

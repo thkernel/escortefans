@@ -72,62 +72,62 @@
 										<div class="col-sm-6 col-md-6">	
 											<div class="form-group">
 												<%= l.collection_select(:country, ISO3166::Country.countries.sort_by(&:iso_short_name).collect { |c| [ c.iso_short_name, "#{c.iso_short_name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', style:"width: 100%", required: true) %>													
-													</div>
+											</div>
 												
-												</div>
-												<div class="col-sm-6 col-md-6">
+										</div>
+										<div class="col-sm-6 col-md-6">
 													
-													<div class="form-group">
-														<%= l.text_field :city, class: "form-control", placeholder: "Ville",  required: true %>													
-													</div>
-												
-												</div>
+											<div class="form-group">
+												<%= l.text_field :city, class: "form-control", placeholder: "Ville",  required: true %>													
 											</div>
 												
-										<% end %>
-									
-									<div class="row">
-										<div class="col-sm-12 col-md-12">
-											<div class="form-group">
-												<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control", required: true %>
-											</div>
 										</div>
 									</div>
-									<div class="row">
-										
-
-										<div class="col-sm-12 col-md-12">
-
-											<div class="form-group">
-												<%= f.password_field :password, autocomplete: "new-password", placeholder: "Mot de passe",  class: "form-control", required: true %>
-											</div>
-											
-										</div>
-										
-										
-									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-12">
-											<div class="form-group">
-												<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe", class: "form-control", required: true %>
-											</div>
-										</div>
-
-									</div>
-										
-									<div class="row">
-										<div class="col-sm-12 col-md-12">
-											<div class="form-group">
-												En continuant votre inscription, vous déclarez avoir plus de 18 ans et acceptez les <%= link_to "CGU", cgu_path %> de la plateforme.
-											</div>
-									
-											<div class="form-group">
-												<%= f.submit "S'inscrire", class: "btn btn-lg  btn-primary btn-block" %>
-											</div>
-										</div>
-									</div>
-									<%= recaptcha_v3(action: 'signup') %>
+												
 								<% end %>
+									
+								<div class="row">
+									<div class="col-sm-12 col-md-12">
+										<div class="form-group">
+											<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control", required: true %>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									
+
+									<div class="col-sm-12 col-md-12">
+
+										<div class="form-group">
+											<%= f.password_field :password, autocomplete: "new-password", placeholder: "Mot de passe",  class: "form-control", required: true %>
+										</div>
+										
+									</div>
+									
+									
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12">
+										<div class="form-group">
+											<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe", class: "form-control", required: true %>
+										</div>
+									</div>
+
+								</div>
+										
+								<div class="row">
+									<div class="col-sm-12 col-md-12">
+										<div class="form-group">
+											En continuant votre inscription, vous déclarez avoir plus de 18 ans et acceptez les <%= link_to "CGU", cgu_path %> de la plateforme.
+										</div>
+								
+										<div class="form-group">
+											<%= f.submit "S'inscrire", class: "btn btn-lg  btn-primary btn-block" %>
+										</div>
+									</div>
+								</div>
+								<%= recaptcha_v3(action: 'signup') %>
+							<% end %>
 							
 							</p>
 						</div>

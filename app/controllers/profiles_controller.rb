@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  include UserViewsHelper
   before_action :set_profile, only: [:show, :edit, :update, :destroy, :change_profile_avatar,:update_profile_avatar, :profile_presentation, :update_profile_presentation,:profile_informations, :update_profile_informations]
  # This controller is reserved for all user authenticate users
  before_action :authenticate_user!
@@ -14,6 +15,9 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    # User profile viewed
+    
+    profile_viewed(@profile.user)
   end
 
   def show_my_profile
@@ -22,6 +26,9 @@ class ProfilesController < ApplicationController
 
   def show_his_profile
     @user = User.find_by(uid: params[:uid])
+
+
+   
   end
 
   def profile_presentation
@@ -141,7 +148,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :sex, :birth_date,  :marital_status, :escort_category_id,  :sexual_orientation, :occupation, :astrology, :religion, :nationality, :purpose, :presentation,:alcohol, :smoking,  :available )
+      params.require(:profile).permit(:first_name, :last_name, :sex, :birth_date,  :marital_status, :escort_category_id,  :sexual_orientation, :occupation, :astrology, :religion, :nationality, :purpose, :presentation,:alcohol, :smoking,  :available, :avatar )
     end
 end
 

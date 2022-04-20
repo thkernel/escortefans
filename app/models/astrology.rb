@@ -1,2 +1,0 @@
-class Astrology < ApplicationRecord
-end
